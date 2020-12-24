@@ -1,20 +1,37 @@
-.ThemeButton {
+.button {
 	padding: 0.5em 1.5em;
-	border: 1px solid currentColor;
-	border-radius: 0.3em;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 	text-align: center;
 	vertical-align: middle;
 	cursor: pointer;
 }
 
-.ThemeButton--light {
-	color: #111133;
-	background-color: #eeeeff;
+.button-text {
+	color: white;
 }
 
-.ThemeButton--dark {
-	color: #eeeeff;
-	background-color: #111133;
+.button.small {
+	font-size: 10px;
 }
+
+.button.normal {
+	font-size: 14px;
+}
+
+.button.large {
+	font-size: 16px;
+}
+
+.button.active {
+	background-color: #1e527a;
+}
+
+.button.destructive {
+	border-color: #de0037;
+	color: #de0037;
+	fill: #de0037;
+	background-color: #de0037;
+  	box-shadow: 0 0 5px #de0037;
+  }
+  

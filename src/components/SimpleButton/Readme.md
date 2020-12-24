@@ -1,22 +1,26 @@
-Small button:
+### Active Button Style (Default style)
 
 ```jsx
-<SimpleButton size="small" text="Small Button Text"/>
+<SimpleButton size="small" text="Small Button"/>
 ```
 
-Normal button:
-
 ```jsx
-<SimpleButton size="normal" text="Large Button Text"/>
+<SimpleButton size="normal" text="Normal Button"/>
 ```
 
-Large button:
-
 ```jsx
-<SimpleButton size="large" text="Large Button Text"/>
+<SimpleButton size="large" text="Large Button"/>
 ```
 
-Normal button with color:
+### Destructive Button Style
 ```jsx
-<SimpleButton size="large" text="Normal Button Text" color="red"/>
+<SimpleButton size="small" text="Small Button" style="destructive"/>
+```
+
+```jsx
+<SimpleButton size="normal" text="Normal Button" style="destructive"/>
+```
+
+```jsx
+<SimpleButton size="large" text="Large Button" style="destructive"/>
 ```
