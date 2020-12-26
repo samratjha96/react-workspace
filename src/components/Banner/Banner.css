@@ -5,6 +5,7 @@
     position:relative;
     border-radius:5px;
     box-shadow:0 0 15px 5px #ccc;
+    justify-content: center;
     align-items: center;
   }
 
@@ -20,7 +21,7 @@
     padding: 10px;
   }
 
-  .banner.wide{
+  .banner.wide {
     padding: 20px;
   }
 
@@ -30,13 +31,12 @@
     justify-content: center;
     width: 0.7em;
     height: 0.7em;
-    padding: 1px;
     border: 1.5px solid;
     border-radius: 50%;
     cursor: pointer;
     font-size: 1.5em;
-    margin-left: auto;
     flex-shrink: 0;
+    margin: 1px 0px;
   }
 
   .banner .close:hover {
@@ -45,7 +45,7 @@
 
   .banner .text {
     display: flex;
-    align-items: center;
+    flex: 1 1 auto;
     flex-wrap: wrap;
     color: #222;
 }
