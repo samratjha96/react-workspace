@@ -8,7 +8,7 @@
     "react-dom": "^17.0.1"
   },
   "scripts": {
-    "style": "npx styleguidist server"
+    "components": "npx styleguidist server"
   },
   "eslintConfig": {
     "extends": [
