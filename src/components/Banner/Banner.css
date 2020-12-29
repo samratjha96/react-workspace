@@ -1,72 +1,20 @@
-@import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css);
-
-  .banner {
-    display: flex;
-    position:relative;
-    border-radius:5px;
-    box-shadow:0 0 15px 5px #ccc;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .banner.info {
-      background-color: #f0f0f0;
-  }
-
-  .banner.error {
-    background-color: #f7a7a3;
+.banner-hidden {
+  animation-name: dismiss;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: 0s;
 }
-
-  .banner.narrow {
-    padding: 10px;
-  }
-
-  .banner.wide {
-    padding: 20px;
-  }
-
-  .banner .close {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 0.7em;
-    height: 0.7em;
-    border: 1.5px solid;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 1.5em;
-    flex-shrink: 0;
-    margin: 1px 0px;
-  }
-
-  .banner .close:hover {
-    background: rgba(0, 0, 0, .1)
-  }
-
-  .banner .text {
-    display: flex;
-    flex: 1 1 auto;
-    flex-wrap: wrap;
-    color: #222;
-}
-
-  .banner-hidden {
-    animation-name: dismiss;
-    animation-duration: 300ms;
-    animation-iteration-count: 1;
-    animation-timing-function: ease;
-    animation-fill-mode: forwards;
-    animation-delay: 0s;
-  }
-
 
 @keyframes dismiss {
-    0% {
-      opacity: 1;
-    }
-    90%, 100% {
-      opacity: 0;
-      font-size: 0.1px;
-      transform: scale(0);
-    }
+  0% {
+    opacity: 1;
   }
+  90%,
+  100% {
+    opacity: 0;
+    font-size: 0.1px;
+    transform: scale(0);
+  }
+}
