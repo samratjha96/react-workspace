@@ -1,48 +1,50 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import './SimpleButton.css';
+import React from "react";
+import PropTypes from "prop-types";
+import "./SimpleButton.css";
 
-class SimpleButton extends Component {
+function SimpleButton(props) {
+  const sizeMap = {
+    small: "p-1.5",
+    normal: "p-2",
+    large: "p-4",
+  };
 
-	constructor(props) {
-		super(props);
-	}
+  const colorMap = {
+    active: "bg-blue-400",
+    activeHover: "bg-blue-600",
+    destructive: "bg-red-600",
+    destructiveHover: "bg-red-800",
+  };
 
-	render() {
-
-		const buttonClassNames = classNames(
-			'button',
-			this.props.style,
-			this.props.size,
-		);
-
-		return (
-			<button className={buttonClassNames}>
-				<div className="button-text">{this.props.text}</div>
-			</button>
-		);
-	}
+  return (
+    <button
+      className={`rounded-lg ${sizeMap[props.size]} ${
+        colorMap[props.style]
+      } shadow-xl hover:${colorMap[props.style + "Hover"]}`}
+    >
+      <div className="text-white font-bold text-center">{props.text}</div>
+    </button>
+  );
 }
 
 SimpleButton.defaultProps = {
-	size: 'normal',
-	style: 'active'
-}
+  size: "normal",
+  style: "active",
+};
 
 SimpleButton.propTypes = {
-	/**
-	 * Text to render
-	 */
-	text: PropTypes.string,
-	/**
-	 * Size of text
-	 */
-	size: PropTypes.oneOf(['small', 'normal', 'large']),
-	/**
-	 * Style of button
-	 */
-	style: PropTypes.oneOf(['active', 'destructive']),
+  /**
+   * Text to render
+   */
+  text: PropTypes.string,
+  /**
+   * Size of text
+   */
+  size: PropTypes.oneOf(["small", "normal", "large"]),
+  /**
+   * Style of button
+   */
+  style: PropTypes.oneOf(["active", "destructive"]),
 };
 
 export default SimpleButton;
