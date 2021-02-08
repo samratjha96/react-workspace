@@ -2,36 +2,36 @@ import React from "react";
 import { useFormik } from "formik";
 
 const Form = () => {
-  // A custom validation function. This must return an object
-  // which keys are symmetrical to our values/initialValues
-  const validate = (values) => {
-    const errors = {};
-    if (!values.name) {
-      errors.name = "Required";
-    } else if (values.name.length > 15) {
-      errors.name = "Must be 15 characters or less";
-    }
+  // // A custom validation function. This must return an object
+  // // which keys are symmetrical to our values/initialValues
+  // const validate = (values) => {
+  //   const errors = {};
+  //   if (!values.name) {
+  //     errors.name = "Required";
+  //   } else if (values.name.length > 15) {
+  //     errors.name = "Must be 15 characters or less";
+  //   }
 
-    if (!values.operatingSystem) {
-      errors.operatingSystem = "Required";
-    } else if (values.operatingSystem.length > 20) {
-      errors.operatingSystem = "Must be 20 characters or less";
-    }
+  //   if (!values.operatingSystem) {
+  //     errors.operatingSystem = "Required";
+  //   } else if (values.operatingSystem.length > 20) {
+  //     errors.operatingSystem = "Must be 20 characters or less";
+  //   }
 
-    if (!values.permissions) {
-      errors.permissions = "Required";
-    } else if (values.permissions.length > 10) {
-      errors.permissions = "Must be 10 characters or less";
-    }
+  //   if (!values.permissions) {
+  //     errors.permissions = "Required";
+  //   } else if (values.permissions.length > 10) {
+  //     errors.permissions = "Must be 10 characters or less";
+  //   }
 
-    if (!values.jre) {
-      errors.jre = "Required";
-    } else if (values.jre.length > 20) {
-      errors.jre = "Too long of a JRE path";
-    }
+  //   if (!values.jre) {
+  //     errors.jre = "Required";
+  //   } else if (values.jre.length > 20) {
+  //     errors.jre = "Too long of a JRE path";
+  //   }
 
-    return errors;
-  };
+  //   return errors;
+  // };
 
   const styleRequiredInput = (formikErroKey) => {
     return formikErroKey
@@ -45,14 +45,33 @@ const Form = () => {
   // at us.
   const formik = useFormik({
     initialValues: {
-      name: "",
-      operatingSystem: "Windows",
-      jre: "",
-      permissions: "",
+      finalState: {
+        dto: {
+          currentNodeDefinition: {
+            planetData: {
+              name: "samratMac",
+              os: "MAC",
+              labels: "test",
+            },
+            jrePath: "",
+          },
+        },
+      },
     },
-    validate,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const body = JSON.stringify(values.finalState, null, 2);
+      fetch("http://localhost:8082/rpa/ajax/resourceDefinitionBean.doSave", {
+        headers: {
+          "Content-Type": "text/plain",
+          "x-csrf-token": "9a946f42-c45c-4266-9b5e-0ad94e2171d8",
+          NewHeader: "JSON-MODE",
+          "Access-Control-Allow-Methods": "POST",
+        },
+        body,
+        method: "POST",
+        mode: "no-cors",
+        credentials: "include",
+      }).then((response) => console.log("Success"));
     },
   });
 
@@ -67,10 +86,12 @@ const Form = () => {
         </label>
         <input
           id="name"
-          name="name"
+          name="finalState.dto.currentNodeDefinition.planetData.name"
           type="text"
           onChange={formik.handleChange}
-          value={formik.values.name}
+          value={
+            formik.values.finalState.dto.currentNodeDefinition.planetData.name
+          }
           className={styleRequiredInput(formik.errors.name)}
         />
         {formik.errors.name ? <div>{formik.errors.name}</div> : null}
@@ -79,10 +100,12 @@ const Form = () => {
           Operating System
         </label>
         <select
-          name="operatingSystem"
+          name="finalState.dto.currentNodeDefinition.planetData.os"
           id="operatingSystem"
           onChange={formik.handleChange}
-          value={formik.values.operatingSystem}
+          value={
+            formik.values.finalState.dto.currentNodeDefinition.planetData.os
+          }
           className={styleRequiredInput(formik.errors.operatingSystem)}
         >
           <option value="Windows">Windows</option>
@@ -99,10 +122,10 @@ const Form = () => {
         </label>
         <input
           id="jre"
-          name="jre"
+          name="finalState.dto.currentNodeDefinition.jrePath"
           type="text"
           onChange={formik.handleChange}
-          value={formik.values.jre}
+          value={formik.values.finalState.dto.currentNodeDefinition.jrePath}
           className={styleRequiredInput(formik.errors.jre)}
         />
         {formik.errors.jre ? <div>{formik.errors.jre}</div> : null}
@@ -112,10 +135,12 @@ const Form = () => {
         </label>
         <input
           id="permissions"
-          name="permissions"
+          name="finalState.dto.currentNodeDefinition.planetData.labels"
           type="text"
           onChange={formik.handleChange}
-          value={formik.values.permissions}
+          value={
+            formik.values.finalState.dto.currentNodeDefinition.planetData.labels
+          }
           className={styleRequiredInput(formik.errors.permissions)}
         />
         {formik.errors.permissions ? (
